@@ -1,13 +1,295 @@
+<!-- 
+Document     : drawing-board.html
+Created on   : 16 Jun, 2016, 11:37:11 AM
+Author       : Pabitra K Jana, Mitrajit Samanta
+Organization : IIT Kharagpur
+-->
 <!DOCTYPE html>
 <html>
-<head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-		<!-- Your code goes here-->
+    <head>
+        <title>Engineering Drawing Board</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/jquery.ui.css">
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="./js/main.js"></script>
-</body>
+        <script src="js/lib/jquery-1.10.2.js"></script>
+        <script src="js/lib/jquery-ui.js"></script>
+        <script src="js/lib/jquery.min.js"></script>
+
+        <script src="js/axis.js"></script>
+        <script src="js/scene.js"></script>
+        <script src="js/controller.js"></script>        
+    </head>
+    <body>
+        <div id="main-wrapper">
+            <div id="canvas2d-wrapper">
+                <div id="canvas2d-title">Engineering Drawing Board</div>            
+                <div id="canvas2d-view"></div>           
+            </div>
+
+            <div id="controller-wrapper">
+                <div id="controller-title">Controller</div>
+                <div id="controller-view">
+                    <div class="controllerBox">
+                        <div id="tabs">
+                            <ul class="tabUl1">
+                                <li><a href="#tabs-1">DRAW</a></li>
+                                <li><a href="#tabs-2">DRAG</a></li>
+                                <li><a href="#tabs-3">MEASURE</a></li>
+                            </ul>
+                            <div id="tabs-1">
+                                <div id="more-tabs-1" class="moreTabs">
+                                    <ul>
+                                        <li><a href="#nested-tabs-1">Point</a></li>
+                                        <li><a href="#nested-tabs-2">Line</a></li>
+                                        <li><a href="#nested-tabs-3">Circle</a></li>
+                                        <li><a href="#nested-tabs-4">Arc</a></li>
+                                    </ul>
+
+                                    <!-- ***************************** Code for parent tab - 1, and child tab - 1 (Point) ************************************--> 
+                                    <fieldset class="parentFieldset" id="nested-tabs-1">
+                                        <legend>Draw Point</legend>	
+                                        X: <input type="text" name="x11" id="x11" value="" />
+                                        Y: <input type="text" name="y11" id="y11" value="" />
+                                        <button id="draw-point">Draw</button>                                        
+                                    </fieldset><!-- end of #nested-tabs-1 -->
+
+
+                                    <!-- ***************************** Code for parent tab - 1, and child tab - 2 (Line) ************************************--> 
+                                    <fieldset class="parentFieldset" id="nested-tabs-2">
+                                        <legend>Draw Line</legend>	
+                                        <!-- <form name="form-12" id="form-12"> -->
+                                        Mode: 
+                                        <select name="mode-12" id="mode-12">
+                                            <option value="0">----- Select -----</option>
+                                            <option value="tpf">Two Point Form</option>
+                                            <option value="psf">Point Slope Form</option>
+                                        </select>
+                                        <button id="draw-line">Draw</button> <br/><br/>
+
+                                        <input type="radio" name="radio-12" class="radio-12" value="full">&nbsp;Full&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" name="radio-12" class="radio-12" value="segment" checked>&nbsp;Segment&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="ckbox12" id="ckbox12" />&nbsp;Vector
+
+
+                                        <fieldset class="fieldset12 tpfClass">
+                                            <legend>Two Point Form</legend>	
+                                            X1: <input type="text" name="x1-12" id="x1-12" value="" />	Y1: <input type="text" name="y1-12" id="y1-12" value="" /><br/>
+                                            X2: <input type="text" name="x2-12" id="x2-12" value="" />	Y2: <input type="text" name="y2-12" id="y2-12" value="" />
+                                        </fieldset>
+
+                                        <fieldset class="fieldset12 psfClass">
+                                            <legend>Point Slope Form</legend>	
+                                            X:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                            <input type="text" name="x-12" id="x-12" value="" />&nbsp;	
+                                            Y:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                            <input type="text" name="y-12" id="y-12" value="" /><br/>
+                                            Theat: <input type="text" name="theat-12" id="theta-12" value="" />	&nbsp;
+                                            <span class="span-12">Length:</span> <input type="text" name="length-12" id="length-12" value="" />
+                                        </fieldset>
+                                        <!-- </form> -->
+                                    </fieldset><!-- end of #nested-tabs-2 -->
+
+
+                                    <!-- ***************************** Code for parent tab - 1, and child tab - 3 (Circle) ************************************--> 
+                                    <fieldset id="nested-tabs-3" class="fieldset13 parentFieldset">
+                                        <legend>Draw Circle</legend>	
+                                        X Center: <input type="text" name="xcenter-13" id="xcenter-13" value="" />&nbsp;&nbsp;&nbsp;
+                                        Y Center: <input type="text" name="ycenter-13" id="ycenter-13" value="" /><br/>
+                                        Radius:&nbsp;&nbsp;<input type="text" name="radius-13" id="radius-13" value="" />
+                                        <button id="draw-circle">Draw</button> 
+                                    </fieldset><!-- end of #nested-tabs-3 -->
+
+
+
+                                    <!-- ***************************** Code for parent tab - 1, and child tab - 4 (Arc) ************************************--> 
+                                    <fieldset id="nested-tabs-4" class="fieldset13 parentFieldset">
+                                        <legend>Draw Arc</legend>	
+                                        X Center:&nbsp;&nbsp;<input type="text" name="xcenter-14" id="xcenter-14" value="" />&nbsp;&nbsp;&nbsp;
+                                        Y Center: <input type="text" name="ycenter-14" id="ycenter-14" value="" /><br/>
+                                        Start Ang: <input type="text" name="start-ang-14" id="start-ang-14" value="" />&nbsp;&nbsp;&nbsp;
+                                        End Ang:&nbsp;&nbsp;<input type="text" name="end-ang-14" id="end-ang-14" value="" /><br/>
+                                        Radius:&nbsp;&nbsp;&nbsp;<input type="text" name="radius-14" id="radius-14" value="" />
+                                        <button id="draw-arc">Draw</button>
+                                    </fieldset><!-- end of #nested-tabs-4 -->
+                                </div><!-- end of #more-tabs-1-->
+                            </div><!-- end of #tabs-1 -->
+
+
+                            <div id="tabs-2">
+                                <div id="more-tabs-2" class="moreTabs">
+                                    <ul>
+                                        <li><a href="#nested-tabs-5">Point</a></li>
+                                        <li><a href="#nested-tabs-6">Line</a></li>
+                                        <li><a href="#nested-tabs-7">Circle</a></li>
+                                        <li><a href="#nested-tabs-8">Arc</a></li>
+                                    </ul>
+
+                                    <!-- ***************************** Code for parent tab - 2, and child tab - 1 (Point) ************************************--> 
+                                    <fieldset class="parentFieldset" id="nested-tabs-5">
+                                        <legend>Drag Point</legend>	
+                                        X: <input type="text" name="x-21" id="x-21" value="" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Y: <input type="text" name="y-21" id="y-21" value="" />
+                                    </fieldset><!-- end of #nested-tabs-5 -->
+
+
+
+
+                                    <!-- ***************************** Code for parent tab - 2, and child tab - 2 (Line) ************************************--> 
+                                    <fieldset class="parentFieldset" id="nested-tabs-6">
+                                        <legend>Drag Line</legend>	
+                                        X1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="x1-22" id="x1-22" value="" />&nbsp;&nbsp;&nbsp;&nbsp; 	
+                                        Y1: <input type="text" name="y1-22" id="y1-22" value="" /><br/>
+
+                                        X2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                        <input type="text" name="x2-22" id="x2-22" value="" />	&nbsp;&nbsp;&nbsp;
+                                        Y2: <input type="text" name="y2-12" id="y2-22" value="" /><br/>
+
+                                        Length: <input type="text" name="length-22" id="length-22" value="" />
+                                    </fieldset><!-- end of #nested-tabs-6 -->
+
+
+
+
+                                    <!-- ***************************** Code for parent tab - 2, and child tab - 3 (Circle) ************************************--> 
+                                    <fieldset id="nested-tabs-7" class="fieldset13 parentFieldset">
+                                        <legend>Drag Circle</legend>	
+                                        X Center: <input type="text" name="xcenter-23" id="xcenter-23" value="" />&nbsp;&nbsp;&nbsp;
+                                        Y Center: <input type="text" name="ycenter-23" id="ycenter-23" value="" /><br/>
+                                        Radius:&nbsp;&nbsp;<input type="text" name="radius-23" id="radius-23" value="" />
+                                    </fieldset><!-- end of #nested-tabs-7 -->
+
+
+
+
+                                    <!-- ***************************** Code for parent tab - 2, and child tab - 4 (Arc) ************************************--> 
+                                    <fieldset id="nested-tabs-8" class="fieldset13 parentFieldset">
+                                        <legend>Drag Arc</legend>	
+                                        <input type="radio" name="radio-24" class="radio-24" value="smaller" checked>&nbsp;Smaller Arc
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" name="radio-24" class="radio-24" value="larger">&nbsp;Larger Arc
+
+                                        <br /><br />
+
+
+                                        X Center:&nbsp;&nbsp;<input type="text" name="xcenter-24" id="xcenter-24" value="" />&nbsp;&nbsp;&nbsp;
+                                        Y Center: <input type="text" name="ycenter-24" id="ycenter-24" value="" /><br/>
+                                        Start Ang: <input type="text" name="stang-24" id="stang-24" value="" />&nbsp;&nbsp;&nbsp;
+                                        End Ang:&nbsp;&nbsp;<input type="text" name="edang-24" id="edang-24" value="" /><br/>
+                                        Radius:&nbsp;&nbsp;&nbsp;<input type="text" name="radius-24" id="radius-24" value="" />
+                                    </fieldset><!-- end of #nested-tabs-8 -->
+
+
+
+                                </div><!-- end of #more-tabs-2-->
+                            </div><!-- end of #tabs-2 -->
+                            <div id="tabs-3">
+                                <div id="more-tabs-3" class="moreTabs">
+                                    <ul>
+                                        <li><a href="#nested-tabs-9">Point</a></li>
+                                        <li><a href="#nested-tabs-10">Pt to Pt</a></li>
+                                        <li><a href="#nested-tabs-11">Pt to Line</a></li>
+                                        <li><a href="#nested-tabs-12">Angle</a></li>
+                                    </ul>
+
+                                    <!-- ***************************** Code for parent tab - 3, and child tab - 1 (Point) ************************************--> 
+                                    <fieldset class="parentFieldset" id="nested-tabs-9">
+                                        <legend>Picking Point</legend>	
+                                        X: <input type="text" name="x-31" id="x-31" value="" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Y: <input type="text" name="y-31" id="y-31" value="" />
+                                    </fieldset><!-- end of #nested-tabs-9 -->
+
+
+
+                                    <!-- ***************************** Code for parent tab - 3, and child tab - 2 (Point to Point) ************************************--> 
+                                    <fieldset class="parentFieldset" id="nested-tabs-10">
+                                        <legend>Measure Point to Point</legend>	
+                                        X1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="x1-32" id="x1-32" value="" />&nbsp;&nbsp;&nbsp;&nbsp; 	
+                                        Y1: <input type="text" name="y1-32" id="y1-32" value="" /><br/>
+
+                                        X2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                        <input type="text" name="x2-32" id="x2-32" value="" />	&nbsp;&nbsp;&nbsp;
+                                        Y2: <input type="text" name="y2-32" id="y2-32" value="" /><br/>
+
+                                        Distance: <input type="text" name="distance-32" id="distance-32" value="" />
+                                    </fieldset><!-- end of #nested-tabs-10 -->
+
+
+
+
+                                    <!-- ***************************** Code for parent tab - 3, and child tab - 3 (Point to Line) ************************************--> 
+                                    <fieldset class="parentFieldset" id="nested-tabs-11">
+                                        <legend>Distance Between Point And Line</legend>
+
+                                        Xp:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="xp-33" id="xp-33" value="" />&nbsp;&nbsp;&nbsp;&nbsp; 	
+                                        Yp: <input type="text" name="yp-33" id="yp-33" value="" /><br/>
+
+                                        X1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="x1-33" id="x1-33" value="" />&nbsp;&nbsp;&nbsp;&nbsp; 	
+                                        Y1: <input type="text" name="y1-33" id="y1-33" value="" /><br/>
+
+                                        X2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                        <input type="text" name="x2-33" id="x2-33" value="" />	&nbsp;&nbsp;&nbsp;
+                                        Y2: <input type="text" name="y2-33" id="y2-33" value="" /><br/>
+
+                                        Distance: <input type="text" name="distance-33" id="distance-33" value="" />
+                                    </fieldset><!-- end of #nested-tabs-11 -->
+
+
+
+
+
+                                    <!-- ***************************** Code for parent tab - 3, and child tab - 4 (Angle) ************************************--> 
+                                    <fieldset class="parentFieldset" id="nested-tabs-12">
+                                        <legend>Pick Angle Between Two Line</legend>
+
+                                        X1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="x1-34" id="x1-34" value="" />&nbsp;&nbsp;&nbsp;&nbsp; 	
+                                        Y1: <input type="text" name="y1-34" id="y1-34" value="" /><br/>
+
+                                        X2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                        <input type="text" name="x2-34" id="x2-34" value="" />	&nbsp;&nbsp;&nbsp;
+                                        Y2: <input type="text" name="y2-34" id="y2-34" value="" /><br/>
+
+                                        X3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" name="x3-34" id="x3-34" value="" />&nbsp;&nbsp;&nbsp;&nbsp; 	
+                                        Y3: <input type="text" name="y3-34" id="y3-34" value="" /><br/>
+
+                                        X4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                        <input type="text" name="x4-34" id="x4-34" value="" />	&nbsp;&nbsp;&nbsp;
+                                        Y4: <input type="text" name="y4-34" id="y4-34" value="" /><br/>
+
+                                        Angle: <input type="text" name="distance-34" id="distance-34" value="" />
+                                    </fieldset><!-- end of #nested-tabs-12 -->
+                                </div><!-- end of #more-tabs-2-->
+                            </div><!-- end of #tabs-2 -->
+                            <div class="clearfix"></div>
+                        </div><!-- end of #tab -->
+
+                        <fieldset class="fieldInst">
+                            <legend>Instruction</legend>
+                            <textarea id="instruction" class="instructions" name="instruction" rows="2" cols="30"></textarea>                            
+                        </fieldset><!-- end of .fieldInst -->
+
+                        <fieldset class="fieldInst">
+                            <legend>Control Cell</legend>
+                            <input type="checkbox" id="axis"/>Axis
+                            <input type="checkbox" id="grid"/>Grid
+                            <input type="color" id="html5-color-picker" value="#000000" style="width:50px;" title="Pick Color">
+                            <button id="download-image" title="Download Image">Image</button> 
+                            <button id="update-canvas">Update</button>
+                            <button id="undo-obj">Undo</button>
+                            <button id="clear-canvas">Clear</button>
+                        </fieldset>
+                        <div class="clearfix"></div>	
+                    </div><!-- end of .controllerBox -->                    
+
+                </div><!-- Controller View  -->
+            </div><!-- Controller Wrapper  -->
+        </div><!-- Main Wrapper  -->
+    </body>
 </html>

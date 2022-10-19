@@ -1,0 +1,99 @@
+/**
+ * 
+ *  Document     : style.css
+ *  Created on   : 20 Jun, 2016, 4:45:25 PM
+ *  Author       : Pabitra K Jana
+ *  Organization : IIT Kharagpur
+ *  
+ */
+#main-wrapper{    
+    border-radius: 5px;    
+    background-color: lightgrey;
+    width: 1200px;
+    min-height: 625px;
+    padding: 5px;
+    border: 2px solid navy;
+    /*margin: 10px;*/
+    margin: 0 auto;
+}
+.clearfix {
+    clear:both;
+}
+#canvas2d-wrapper{
+    float: left;
+    width: 850px;
+}
+#canvas2d-title, #controller-title{
+    height: 25px;
+    color: #638EA8;
+    background-color: #E4EAED;    
+    border-top: 1px #85A8C2 solid;
+    border-right: 1px #85A8C2 solid;
+    border-bottom: 1px #85A8C2 solid;
+    border-left: 1px #85A8C2 solid;    
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 5px;
+}
+#canvas2d-view{
+    background-color: #ffffff;
+    height: 600px;   
+
+}
+#controller-wrapper{
+    padding-left: 855px;
+}
+
+#controller-view{
+    height: 600px;	
+}
+
+/******************************************** Controller **************************************************/
+#tabs {
+    height:335px;
+}
+fieldset legend {
+    font-weight:bold;
+}
+fieldset {
+    font-size:12px;
+    padding-top:20px;
+    margin-top: 10px;
+}
+fieldset.parentFieldset {
+    min-height:150px;
+}
+#x11, #y11,#x-21, #y-21 {
+    width:80px;
+}
+
+.fieldset12 {
+    margin:15px 0;
+}
+.fieldset12 input[type=text] {
+    width:80px;
+    margin-bottom:10px;
+}
+#x1-12,#x2-12 {
+    margin-right:30px;
+}
+#xcenter-13,#ycenter-13,#radious-13,#start-ang-14,#end-ang-14,#radious-14,#xcenter-14,#ycenter-14,#x1-22,#x2-22,#y1-22,#y2-22,#length-22,#xcenter-23,#ycenter-23,#radious-23,
+#xcenter-24,#ycenter-24,#radious-24,#stang-24,#edang-24,#radious-24, #x-31, #y-31,#x1-32,#x2-32,#y1-32,#y2-32,#distance-32,#xp-33,#yp-33,
+#x1-33,#x2-33,#y1-33,#y2-33,#distance-33,#x1-34,#x2-34,#y1-34,#y2-34,#x3-34,#x4-34,#y3-34,#y4-34,#distance-34{
+    width:70px;
+    margin-bottom:10px;
+}
+.tpfClass, .psfClass {
+    display:none;
+}
+.fieldInst {
+    padding-top:0 !important;
+}
+.fieldInst legend {
+    font-size:14px;
+    font-weight:bold;
+}
+.instructions {
+    width:100%;
+    height:50px;
+}
